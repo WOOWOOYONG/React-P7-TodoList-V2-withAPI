@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/React-P7-TodoList-V2-withAPI/static/css/main.8d846f00.css",
+    "main.js": "/React-P7-TodoList-V2-withAPI/static/js/main.f0625de9.js",
+    "static/media/workImg.png": "/React-P7-TodoList-V2-withAPI/static/media/workImg.e239cd77c3e6f3d3bb03.png",
+    "index.html": "/React-P7-TodoList-V2-withAPI/index.html",
+    "main.8d846f00.css.map": "/React-P7-TodoList-V2-withAPI/static/css/main.8d846f00.css.map",
+    "main.f0625de9.js.map": "/React-P7-TodoList-V2-withAPI/static/js/main.f0625de9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d846f00.css",
+    "static/js/main.f0625de9.js"
+  ]
+}
