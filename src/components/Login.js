@@ -30,6 +30,7 @@ const Login = () => {
         return res.json();
       })
       .then((res) => {
+        alert(res.message);
         navigate("/todo");
       })
       .catch((err) => {

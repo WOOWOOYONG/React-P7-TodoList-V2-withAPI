@@ -37,9 +37,9 @@ const App = () => {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
           </Route>
-          <Route element={ProtectedRoute}>
-            <Route path="/todo" element={<TodoPage />} />
-          </Route>
+          {/* <Route element={ProtectedRoute}> */}
+          <Route path="/todo" element={<TodoPage />} />
+          {/* </Route> */}
         </Routes>
       </AuthContext.Provider>
     </>

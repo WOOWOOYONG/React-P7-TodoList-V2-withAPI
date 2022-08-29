@@ -11,6 +11,7 @@ const SignUp = () => {
     watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
     const _url = "https://todoo.5xcamp.us/users";
     console.log({
@@ -33,6 +34,9 @@ const SignUp = () => {
       })
       .then((res) => {
         navigate("/todo");
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   return (

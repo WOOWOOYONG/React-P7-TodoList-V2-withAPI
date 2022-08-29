@@ -31,14 +31,13 @@ const Todos = ({ text, id, done, todolist, setTodolist }) => {
         />
         <span>{text}</span>
       </label>
-      <a
-        href="#"
+      <button
         onClick={() => {
           handleDelete(id);
         }}
       >
         <i className="fa fa-times"></i>
-      </a>
+      </button>
     </li>
   );
 };

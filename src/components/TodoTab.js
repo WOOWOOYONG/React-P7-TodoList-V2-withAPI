@@ -5,7 +5,7 @@ const TodoTab = ({ status, setStatus }) => {
     setStatus(e.target.dataset.status);
   };
   return (
-    <ul class="todoList_tab">
+    <ul className="todoList_tab">
       <li>
         <a
           href="#/todo"
