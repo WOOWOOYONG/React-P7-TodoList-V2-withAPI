@@ -4,6 +4,7 @@ import { useAuth } from "./Context";
 const Logout = async () => {
   const { token } = useAuth();
   const { navigate } = useNavigate();
+
   const _url = "https://todoo.5xcamp.us/sign_out";
   await fetch(_url, {
     method: "DELETE",

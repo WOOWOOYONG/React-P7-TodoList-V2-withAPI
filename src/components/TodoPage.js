@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import Todos from "./TodosItem";
 import TodoInput from "./TodoInput";
 import TodoTab from "./TodoTab";
-import { useAuth } from "./Context";
+import {
+  useAuth,
+  getLocalUser,
+  getLocalToken,
+  clearLocalUser,
+} from "./Context";
 import Logout from "./Logout";
 
 const TodoPage = () => {
@@ -10,7 +15,16 @@ const TodoPage = () => {
   const [todolist, setTodolist] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const { token } = useAuth();
+
+  //從localStorage取得資料
+  console.log(getLocalToken(), getLocalToken());
+  const user = getLocalUser();
+  const authorization = getLocalToken();
+
+  const LogOut = async () => {
+    await Logout();
+    await clearLocalUser();
+  };
 
   //API
   //建立API TODO資料
@@ -24,7 +38,7 @@ const TodoPage = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          authorization: token,
+          authorization: authorization,
         },
         body: JSON.stringify({
           todo: {
@@ -51,7 +65,7 @@ const TodoPage = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        authorization: authorization,
       },
     })
       .then((res) => {
@@ -76,7 +90,7 @@ const TodoPage = () => {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
-        authorization: token,
+        authorization: authorization,
       },
     }).then((res) => {
       return res.json();
@@ -91,7 +105,7 @@ const TodoPage = () => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        authorization: authorization,
       },
     }).then((res) => {
       return res.json();
@@ -143,11 +157,11 @@ const TodoPage = () => {
         <ul>
           <li className="todo_sm">
             <a href="/ToDoList/#/Todo">
-              <span>`nickname`的待辦</span>
+              <span>{user}的待辦</span>
             </a>
           </li>
           <li>
-            <a href="/ToDoList" onClick={Logout}>
+            <a href="/ToDoList" onClick={LogOut}>
               登出
             </a>
           </li>
@@ -158,8 +172,6 @@ const TodoPage = () => {
           <TodoInput
             input={input}
             setInput={setInput}
-            todolist={todolist}
-            setTodolist={setTodolist}
             addTodoApi={addTodoApi}
           />
           <div className="todoList_list">
@@ -172,8 +184,6 @@ const TodoPage = () => {
                     content={item.content}
                     completed_at={item.completed_at}
                     id={item.id}
-                    todolist={todolist}
-                    setTodolist={setTodolist}
                     toggleTodoApi={toggleTodoApi}
                     deleteTodoApi={deleteTodoApi}
                   />

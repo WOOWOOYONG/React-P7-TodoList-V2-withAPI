@@ -1,10 +1,11 @@
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "./Context";
+import { useAuth, setLocalUser, setLocalToken } from "./Context";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
   const { token, setToken } = useAuth();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -27,9 +28,11 @@ const Login = () => {
           throw new Error("登入失敗，請重新檢驗！");
         }
         setToken(res.headers.get("authorization"));
+        setLocalToken(res.headers.get("authorization"));
         return res.json();
       })
       .then((res) => {
+        setLocalUser(res.nickname);
         alert(res.message);
         navigate("/todo");
       })
