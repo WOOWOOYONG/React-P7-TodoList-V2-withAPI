@@ -8,7 +8,7 @@ import LogoImg from "./img/logo.png";
 import WorkImg from "./img/workImg.png";
 import { AuthContext, useAuth } from "./components/Context";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-
+import NotFound from "./components/NotFound";
 //component 首頁
 const Home = () => {
   return (
@@ -37,9 +37,10 @@ const App = () => {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
           </Route>
-          {/* <Route element={ProtectedRoute}> */}
-          <Route path="/todo" element={<TodoPage />} />
-          {/* </Route> */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/todo" element={<TodoPage />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthContext.Provider>
     </>

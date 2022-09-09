@@ -101,6 +101,39 @@ img {
   padding: 87px 32px;
 }
 
+.notfound {
+  color: rgb(94, 94, 94);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #FFD370;
+}
+.notfound h1 {
+  font-size: 3rem;
+  padding-bottom: 2rem;
+}
+
+.notfound button {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(88, 88, 88);
+  background-color: #ececec;
+  border: 1px solid #888;
+  border-radius: 10px;
+  padding: 5px;
+  
+}
+
+.notfound button:hover {
+  cursor: pointer;
+  background-color: #3b3b3b;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+
 @media (max-width: 576px) {
   .conatiner {
     padding: 18px 32px;
