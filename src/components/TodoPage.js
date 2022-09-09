@@ -2,12 +2,6 @@ import { useState, useEffect } from "react";
 import Todos from "./TodosItem";
 import TodoInput from "./TodoInput";
 import TodoTab from "./TodoTab";
-import {
-  useAuth,
-  getLocalUser,
-  getLocalToken,
-  clearLocalUser,
-} from "./Context";
 import Logout from "./Logout";
 
 const TodoPage = () => {
@@ -17,13 +11,12 @@ const TodoPage = () => {
   const [filteredTodos, setFilteredTodos] = useState([]);
 
   //從localStorage取得資料
-  console.log(getLocalToken(), getLocalToken());
-  const user = getLocalUser();
-  const authorization = getLocalToken();
+  const { nickname } = JSON.parse(localStorage.getItem("user"));
+  const { authorization } = JSON.parse(localStorage.getItem("authorization"));
 
   const LogOut = async () => {
     await Logout();
-    await clearLocalUser();
+    localStorage.clear();
   };
 
   //API
@@ -49,8 +42,7 @@ const TodoPage = () => {
         .then((res) => {
           return res.json();
         })
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           setInput("");
         })
         .catch((err) => console.log(err));
@@ -78,7 +70,6 @@ const TodoPage = () => {
           completed_at: item.completed_at,
         }));
         setTodolist(list);
-        console.log(list);
       })
       .catch((err) => console.log(err));
   };
@@ -157,7 +148,7 @@ const TodoPage = () => {
         <ul>
           <li className="todo_sm">
             <a href="/ToDoList/#/Todo">
-              <span>{user}的待辦</span>
+              <span>{nickname}的待辦</span>
             </a>
           </li>
           <li>

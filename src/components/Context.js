@@ -14,12 +14,3 @@ export const setLocalUser = (data) => {
 export const setLocalToken = (data) => {
   localStorage.setItem("authorization", JSON.stringify(data));
 };
-export const getLocalUser = () => {
-  JSON.parse(localStorage.getItem("user"));
-};
-
-export const getLocalToken = () => {
-  JSON.parse(localStorage.getItem("authorization"));
-};
-
-export const clearLocalUser = () => localStorage.clear();

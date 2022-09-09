@@ -1,6 +1,9 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth, setLocalUser, setLocalToken } from "./Context";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Login = () => {
   const { token, setToken } = useAuth();
@@ -28,17 +31,27 @@ const Login = () => {
           throw new Error("登入失敗，請重新檢驗！");
         }
         setToken(res.headers.get("authorization"));
-        setLocalToken(res.headers.get("authorization"));
+        setLocalToken({
+          authorization: res.headers.get("authorization"),
+        });
         return res.json();
       })
       .then((res) => {
-        setLocalUser(res.nickname);
-        alert(res.message);
+        setLocalUser({
+          nickname: res.nickname,
+        });
+        MySwal.fire({
+          icon: "success",
+          title: res.message,
+        });
         navigate("/todo");
       })
       .catch((err) => {
         console.log(err);
-        alert(err.message);
+        MySwal.fire({
+          icon: "error",
+          title: err.message,
+        });
       });
   };
 

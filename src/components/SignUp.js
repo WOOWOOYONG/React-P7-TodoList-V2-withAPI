@@ -1,6 +1,9 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "./Context";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const SignUp = () => {
   const { token, setToken } = useAuth();
@@ -33,10 +36,18 @@ const SignUp = () => {
         return res.json();
       })
       .then((res) => {
+        MySwal.fire({
+          icon: "success",
+          title: res.message,
+        });
         navigate("/todo");
       })
       .catch((err) => {
         console.log(err);
+        MySwal.fire({
+          icon: "error",
+          title: err.message,
+        });
       });
   };
   return (
