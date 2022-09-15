@@ -147,12 +147,12 @@ const TodoPage = () => {
         </h1>
         <ul>
           <li className="todo_sm">
-            <a href="/ToDoList/#/Todo">
+            <a href="#/todo">
               <span>{nickname}的待辦</span>
             </a>
           </li>
           <li>
-            <a href="/ToDoList" onClick={LogOut}>
+            <a href="#" onClick={LogOut}>
               登出
             </a>
           </li>
